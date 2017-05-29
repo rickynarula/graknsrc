@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for js/User.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">js</a> User.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10.2% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/49</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10.64% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/47</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import EngineClient from './EngineClient';
+&nbsp;
+&nbsp;
+// Default constant values
+const DEFAULT_USE_REASONER = false;
+const DEFAULT_MATERIALISE = false;
+export const DEFAULT_KEYSPACE = 'grakn';
+const DEFAULT_QUERY_LIMIT = '30';
+&nbsp;
+&nbsp;
+export default <span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" >{</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
+&nbsp;
+    // --------- User Login and Authentication ----------- //
+  newSession(creds, fn) {
+<span class="cstat-no" title="statement not covered" >    return EngineClient.newSession(creds);</span>
+  },
+&nbsp;
+  setAuthToken(token) {
+<span class="cstat-no" title="statement not covered" >    localStorage.setItem('id_token', token);</span>
+  },
+&nbsp;
+  logout() {
+<span class="cstat-no" title="statement not covered" >    localStorage.removeItem('id_token');</span>
+  },
+&nbsp;
+  isAuthenticated() {
+    c</span>onst jwt = <span class="cstat-no" title="statement not covered" >localStorage.getItem('id_token');
+<span class="cstat-no" title="statement not covered" >    if (jwt) <span class="cstat-no" title="statement not covered" >r</span>eturn true;</span>
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+  },
+&nbsp;
+    // -------------- Reasoner and materialisation toggles ------------ //
+  setReasonerStatus(status) {
+<span class="cstat-no" title="statement not covered" >    localStorage.setItem('use_reasoner', status);</span>
+  },
+&nbsp;
+    // @return boolean
+  getReasonerStatus() {
+    c</span>onst useReasoner = <span class="cstat-no" title="statement not covered" >localStorage.getItem('use_reasoner');
+<span class="cstat-no" title="statement not covered" >    if (useReasoner == null) {</span>
+<span class="cstat-no" title="statement not covered" >      this.setReasonerStatus(DEFAULT_USE_REASONER);</span>
+<span class="cstat-no" title="statement not covered" >      return DEFAULT_USE_REASONER;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return (useReasoner === 'true');</span>
+  },
+&nbsp;
+  setMaterialiseStatus(status) {
+<span class="cstat-no" title="statement not covered" >    localStorage.setItem('reasoner_materialise', status);</span>
+  },
+&nbsp;
+  getFreezeNodes() {
+    c</span>onst freezeNodes = <span class="cstat-no" title="statement not covered" >localStorage.getItem('freeze_nodes');
+<span class="cstat-no" title="statement not covered" >    if (freezeNodes == null) {</span>
+<span class="cstat-no" title="statement not covered" >      this.setFreezeNodes(false);</span>
+<span class="cstat-no" title="statement not covered" >      return false;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return (freezeNodes === 'true');</span>
+  },
+&nbsp;
+  setFreezeNodes(status) {
+<span class="cstat-no" title="statement not covered" >    localStorage.setItem('freeze_nodes', status);</span>
+  },
+&nbsp;
+    // @return boolean
+  getMaterialiseStatus() {
+    c</span>onst materialiseReasoner = <span class="cstat-no" title="statement not covered" >localStorage.getItem('reasoner_materialise');
+<span class="cstat-no" title="statement not covered" >    if (materialiseReasoner == null) {</span>
+<span class="cstat-no" title="statement not covered" >      this.setMaterialiseStatus(DEFAULT_MATERIALISE);</span>
+<span class="cstat-no" title="statement not covered" >      return DEFAULT_MATERIALISE;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return (materialiseReasoner === 'true');</span>
+  },
+&nbsp;
+    // ---- Current Keyspace -----//
+  setCurrentKeySpace(keyspace) {
+<span class="cstat-no" title="statement not covered" >    localStorage.setItem('current_keyspace', keyspace);</span>
+  },
+&nbsp;
+  getCurrentKeySpace() {
+<span class="cstat-no" title="statement not covered" >    if (!localStorage.getItem('current_keyspace')) {</span>
+      //  TODO: check if the default keyspace has been created on server side.
+<span class="cstat-no" title="statement not covered" >      this.setCurrentKeySpace(DEFAULT_KEYSPACE);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return localStorage.getItem('current_keyspace');</span>
+  },
+    // ------ Join-community modal setter and getter (has it already be shown to the user) ----//
+  setModalShown(shown) {
+<span class="cstat-no" title="statement not covered" >    localStorage.setItem('community_modal', shown);</span>
+  },
+&nbsp;
+  getModalShown() {
+    c</span>onst modalShown = <span class="cstat-no" title="statement not covered" >localStorage.getItem('community_modal');
+<span class="cstat-no" title="statement not covered" >    if (!modalShown) {</span>
+<span class="cstat-no" title="statement not covered" >      this.setModalShown(false);</span>
+<span class="cstat-no" title="statement not covered" >      return false;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return (modalShown === 'true');</span>
+  },
+&nbsp;
+  // ------------ Limit number of results ---------------- //
+  getQueryLimit() {
+    c</span>onst queryLimit = <span class="cstat-no" title="statement not covered" >localStorage.getItem('query_limit');
+<span class="cstat-no" title="statement not covered" >    if (queryLimit == null) {</span>
+<span class="cstat-no" title="statement not covered" >      this.setQueryLimit(DEFAULT_QUERY_LIMIT);</span>
+<span class="cstat-no" title="statement not covered" >      return DEFAULT_QUERY_LIMIT;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return queryLimit;</span>
+  },
+  setQueryLimit(value) {
+    l</span>et parsedValue = <span class="cstat-no" title="statement not covered" >parseInt(value, 10) || 0;
+<span class="cstat-no" title="statement not covered" >    if (parsedValue &lt; 0) <span class="cstat-no" title="statement not covered" >p</span>arsedValue = 0;</span>
+<span class="cstat-no" title="statement not covered" >    localStorage.setItem('query_limit', parsedValue);</span>
+  },
+&nbsp;
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Apr 07 2017 23:56:14 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

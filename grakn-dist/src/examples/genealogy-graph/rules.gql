@@ -1,0 +1,260 @@
+insert
+
+
+#############################################################################
+#                                                                           #
+# Rules to add personal data from high confidence events to person entities #
+#                                                                           # 
+#############################################################################
+ 
+ $materializePeopleNames isa inference-rule
+ lhs
+ {$b isa birth has confidence "high" has firstname $name;
+ $rel (happening: $b, protagonist: $p) isa event-protagonist;
+ $rel has function "newborn";}
+ rhs
+ {$p has firstname $name;};
+ 
+ $materializePeopleMiddleNames isa inference-rule
+ lhs
+ {$b isa birth has confidence "high" has middlename $name;
+ $rel (happening: $b, protagonist: $p) isa event-protagonist;
+ $rel has function "newborn";}
+ rhs
+ {$p has middlename $name;};
+ 
+ $materializePeopleSurnames isa inference-rule
+ lhs
+ {$b isa birth has confidence "high" has surname $name;
+ $rel (happening: $b, protagonist: $p) isa event-protagonist;
+ $rel has function "newborn";}
+ rhs
+ {$p has surname $name;};
+ 
+ $materializePeopleGender isa inference-rule
+ lhs
+ {$b isa birth has confidence "high" has gender $gender;
+ $rel (happening: $b, protagonist: $p) isa event-protagonist;
+ $rel has function "newborn";}
+ rhs
+ {$p has gender $gender;};
+ 
+ $materializePeopleBirthDates isa inference-rule
+ lhs
+ {$b isa birth has confidence "high" has birth-date $date;
+ $rel (happening: $b, protagonist: $p) isa event-protagonist;
+ $rel has function "newborn";}
+ rhs
+ {$p has birth-date $date;};
+ 
+ $materializePeopleDeathDates isa inference-rule
+ lhs
+ {$b isa death has confidence "high" has death-date $date;
+ $rel (happening: $b, protagonist: $p);
+ $rel isa event-protagonist has function "deceased";}
+ rhs
+ {$p has death-date $date;};
+
+ $materializePeopleAge isa inference-rule
+ lhs
+ {$b isa death has confidence "high" has age $age;
+ $rel (happening: $b, protagonist: $p);
+ $rel isa event-protagonist has function "deceased";}
+ rhs
+ {$p has age $age;};
+
+#############################################################################
+#                                                                           #
+#     Rules to retrieve parentships from high confidence birth events       #
+#                                                                           # 
+#############################################################################
+
+$materializeParentChildRelations isa inference-rule
+lhs
+{$b isa birth has confidence "high";
+$rel1 (happening: $b, protagonist: $p) isa event-protagonist;
+$rel1 has function "parent";
+$rel2 (happening: $b, protagonist: $c) isa event-protagonist;
+$rel2 has function "newborn";}
+rhs
+{(parent: $p, child: $c) isa parentship;};
+
+#############################################################################
+#                                                                           #
+#     Rules to retrieve marriages from high confidence wedding events       #
+#                                                                           # 
+#############################################################################
+
+
+$materializeMarriagesFromWeddings isa inference-rule
+lhs
+{$w isa wedding has confidence "high";
+$rel1 (happening: $w, protagonist: $s1) isa event-protagonist;
+$rel1 has function "spouse";
+$rel2 (happening: $w, protagonist: $s2) isa event-protagonist;
+$rel2 has function "spouse";
+$s1 != $s2;}
+rhs
+{(spouse1: $s1, spouse2: $s2) isa marriage;};
+
+$parentsOfParentsAreGrandparents isa inference-rule
+lhs
+{(parent:$p, child: $gc) isa parentship;
+(parent: $gp, child: $p) isa parentship;
+}
+rhs
+{(grandparent: $gp, grandchild: $gc) isa grandparentship;};
+
+
+$peopleWithSameParentsAreSiblings isa inference-rule
+lhs
+{(parent: $m, child: $x) isa parentship;
+(parent: $m, child: $y) isa parentship;
+(parent: $f, child: $x) isa parentship;
+(parent: $f, child: $y) isa parentship;
+$m has gender "female";
+$f has gender "male";
+$x != $y;
+}
+rhs
+{(sibling1: $x, sibling2: $y) isa siblings;};
+
+
+$peopleWithSiblingsParentsAreCousins isa inference-rule
+lhs
+{
+(parent: $p, child: $c1) isa parentship;
+($p, $p2) isa siblings;
+(parent: $p2, child: $c2) isa parentship;
+$c1 != $c2;
+}
+rhs
+{(cousin1: $c1, cousin2: $c2) isa cousins;};
+
+
+$parentsOfSpousesAreInLaws isa inference-rule
+lhs
+{(spouse1: $x, spouse2: $y) isa marriage;
+(parent: $il, child: $y) isa parentship;}
+rhs
+{(parent-in-law: $il, child-in-law: $x) isa in-laws;};
+
+$parentsOfSpousesAreInLaws2 isa inference-rule
+lhs
+{(spouse1: $x, spouse2: $y) isa marriage;
+(parent: $il, child: $x) isa parentship;}
+rhs
+{(parent-in-law: $il, child-in-law: $y) isa in-laws;};
+
+$grandParents1 isa inference-rule
+lhs
+{($p, son: $gc) isa parentship;
+(father: $gp, $p) isa parentship;
+}
+rhs
+{(grandfather: $gp, grandson: $gc) isa grandparentship;};
+
+$grandParents2 isa inference-rule
+lhs
+{($p, daughter: $gc) isa parentship;
+(father: $gp, $p) isa parentship;
+}
+rhs
+{(grandfather: $gp, granddaughter: $gc) isa grandparentship;};
+
+$grandParents3 isa inference-rule
+lhs
+{($p, daughter: $gc) isa parentship;
+(mother: $gp, $p) isa parentship;
+}
+rhs
+{(grandmother: $gp, granddaughter: $gc) isa grandparentship;};
+
+$grandParents4 isa inference-rule
+lhs
+{($p, son: $gc) isa parentship;
+(mother: $gp, $p) isa parentship;
+}
+rhs
+{(grandmother: $gp, grandson: $gc) isa grandparentship;};
+
+$genderizeParentships1 isa inference-rule
+lhs
+{(parent: $p, child: $c) isa parentship;
+$p has gender "male";
+$c has gender "male";
+}
+rhs
+{(father: $p, son: $c) isa parentship;};
+
+$genderizeParentships2 isa inference-rule
+lhs
+{(parent: $p, child: $c) isa parentship;
+$p has gender "male";
+$c has gender "female";
+}
+rhs
+{(father: $p, daughter: $c) isa parentship;};
+
+$genderizeParentships3 isa inference-rule
+lhs
+{(parent: $p, child: $c) isa parentship;
+$p has gender "female";
+$c has gender "male";
+}
+rhs
+{(mother: $p, son: $c) isa parentship;};
+
+$genderizeParentships4 isa inference-rule
+lhs
+{(parent: $p, child: $c) isa parentship;
+$p has gender "female";
+$c has gender "female";
+}
+rhs
+{(mother: $p, daughter: $c) isa parentship;};
+
+$genderizeMarriages isa inference-rule
+lhs
+{(spouse1: $s1, spouse2: $s2) isa marriage;
+$s1 has gender "male";
+}
+rhs
+{(husband: $s1, wife: $s2) isa marriage;};
+
+$genderizeMarriages2 isa inference-rule
+lhs
+{(spouse1: $s1, spouse2: $s2) isa marriage;
+$s1 has gender "female";
+}
+rhs
+{(husband: $s2, wife: $s1) isa marriage;};
+
+$inLaws1 isa inference-rule
+lhs
+{(husband: $x, wife: $y) isa marriage;
+(mother: $il, $y) isa parentship;}
+rhs
+{(mother-in-law: $il, son-in-law: $x) isa in-laws;};
+
+$inLaws2 isa inference-rule
+lhs
+{(husband: $x, wife: $y) isa marriage;
+(father: $il, $y) isa parentship;}
+rhs
+{(father-in-law: $il, son-in-law: $x) isa in-laws;};
+
+$inLaws3 isa inference-rule
+lhs
+{(husband: $x, wife: $y) isa marriage;
+(father: $il, child: $y) isa parentship;}
+rhs
+{(father-in-law: $il, daughter-in-law: $y) isa in-laws;};
+
+$inLaws4 isa inference-rule
+lhs
+{(husband: $x, wife: $y) isa marriage;
+(mother: $il, child: $y) isa parentship;}
+rhs
+{(mother-in-law: $il, daughter-in-law: $y) isa in-laws;};
+

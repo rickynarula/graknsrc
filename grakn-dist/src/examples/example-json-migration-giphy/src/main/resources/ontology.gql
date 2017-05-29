@@ -1,0 +1,10 @@
+insert
+
+gif sub entity
+    has-resource keyword
+    has-resource bitly-url
+    has-resource rating;
+
+keyword sub resource datatype string;
+bitly-url sub resource datatype string;
+rating sub resource datatype string;
